@@ -7,6 +7,8 @@ import subprocess
 import signal
 import threading
 from lightSequencer import program
+import sys
+sys.path.append('/Users/s1034274/Desktop/globals/')
 from constants import monHipHop, tuesRock, wedWayBack, thursThrowback, fridayHits, satDisco, sunCountry, numSongs, numStations, holiday, michealJ, yacht
 
 lights = pygame.Rect(115, 10, 99, 39)

@@ -7,6 +7,9 @@ import subprocess
 import signal
 import threading
 import pygame_widgets
+import sys
+sys.path.append('/Users/s1034274/Desktop/globals/')
+from constants import path
 from compiler import compile, finish
 
 red = (255,0,0)
@@ -46,13 +49,13 @@ selected = 0
 i = 0
 
 
-## CENTER
-redFlagColorCenter = red
-orangeFlagColorCenter = orange
-whiteFlagColorCenter = white
-yellowFlagColorCenter = yellow
-greenFlagColorCenter = green
-blueFlagColorCenter = blue
+## left
+redFlagColorleft = red
+orangeFlagColorleft = orange
+whiteFlagColorleft = white
+yellowFlagColorleft = yellow
+greenFlagColorleft = green
+blueFlagColorleft = blue
 ## MIDDLE
 redFlagColorMiddle = red
 orangeFlagColorMiddle = orange
@@ -60,33 +63,33 @@ whiteFlagColorMiddle = white
 yellowFlagColorMiddle = yellow
 greenFlagColorMiddle = green
 blueFlagColorMiddle = blue
-## OUTER
-redFlagColorOuter = red
-orangeFlagColorOuter = orange
-whiteFlagColorOuter = white
-yellowFlagColorOuter = yellow
-greenFlagColorOuter = green
-blueFlagColorOuter = blue
+## Right
+redFlagColorRight = red
+orangeFlagColorRight = orange
+whiteFlagColorRight = white
+yellowFlagColorRight = yellow
+greenFlagColorRight = green
+blueFlagColorRight = blue
 
 songSequence = pd.DataFrame({
-                    'red Inner':redFlagColorCenter,
+                    'red Left':redFlagColorleft,
                     'red Middle':redFlagColorMiddle,
-                    'red Outer':redFlagColorOuter,
-                    'orange Inner':orangeFlagColorCenter,
+                    'red Right':redFlagColorRight,
+                    'orange Left':orangeFlagColorleft,
                     'orange Middle':orangeFlagColorMiddle,
-                    'orange Outer':orangeFlagColorOuter,
-                    'yellow Inner':yellowFlagColorCenter,
+                    'orange Right':orangeFlagColorRight,
+                    'yellow Left':yellowFlagColorleft,
                     'yellow Middle':yellowFlagColorMiddle,
-                    'yellow Outer':yellowFlagColorOuter,
-                    'white Inner':whiteFlagColorCenter,
+                    'yellow Right':yellowFlagColorRight,
+                    'white Left':whiteFlagColorleft,
                     'white Middle':whiteFlagColorMiddle,
-                    'white Outer':whiteFlagColorOuter,
-                    'green Inner':greenFlagColorCenter,
+                    'white Right':whiteFlagColorRight,
+                    'green Left':greenFlagColorleft,
                     'green Middle':greenFlagColorMiddle,
-                    'green Outer':greenFlagColorOuter,
-                    'blue Inner':blueFlagColorCenter,
+                    'green Right':greenFlagColorRight,
+                    'blue Left':blueFlagColorleft,
                     'blue Middle':blueFlagColorMiddle,
-                    'blue Outer':blueFlagColorOuter})
+                    'blue Right':blueFlagColorRight})
 
 g1Action[1] = white
 g2Action[1] = white
@@ -96,24 +99,24 @@ g5Action[1] = white
 g6Action[1] = white
 
 songSequence = songSequence.append({
-                    'red Inner':redFlagColorCenter,
+                    'red Left':redFlagColorleft,
                     'red Middle':redFlagColorMiddle,
-                    'red Outer':redFlagColorOuter,
-                    'orange Inner':orangeFlagColorCenter,
+                    'red Right':redFlagColorRight,
+                    'orange Left':orangeFlagColorleft,
                     'orange Middle':orangeFlagColorMiddle,
-                    'orange Outer':orangeFlagColorOuter,
-                    'yellow Inner':yellowFlagColorCenter,
+                    'orange Right':orangeFlagColorRight,
+                    'yellow Left':yellowFlagColorleft,
                     'yellow Middle':yellowFlagColorMiddle,
-                    'yellow Outer':yellowFlagColorOuter,
-                    'white Inner':whiteFlagColorCenter,
+                    'yellow Right':yellowFlagColorRight,
+                    'white Left':whiteFlagColorleft,
                     'white Middle':whiteFlagColorMiddle,
-                    'white Outer':whiteFlagColorOuter,
-                    'green Inner':greenFlagColorCenter,
+                    'white Right':whiteFlagColorRight,
+                    'green Left':greenFlagColorleft,
                     'green Middle':greenFlagColorMiddle,
-                    'green Outer':greenFlagColorOuter,
-                    'blue Inner':blueFlagColorCenter,
+                    'green Right':greenFlagColorRight,
+                    'blue Left':blueFlagColorleft,
                     'blue Middle':blueFlagColorMiddle,
-                    'blue Outer':blueFlagColorOuter}, ignore_index=True)
+                    'blue Right':blueFlagColorRight}, ignore_index=True)
 g1Color = grey
 g2Color = grey
 g3Color = grey
@@ -126,20 +129,20 @@ screen = pygame.display.set_mode((750, 500))
 clock = pygame.time.Clock()
 pygame.display.set_caption("Programmer")
 
-## CENTER
-redFlagCenterOrig = (270, 330, 39, 39)
-orangeFlagCenterOrig = (600, 270, 39, 39)
-whiteFlagCenterOrig = (490, 190, 39, 39)
-yellowFlagCenterOrig = (300, 220, 39, 39)
-greenFlagCenterOrig = (390, 160, 39, 39)
-blueFlagCenterOrig = (620, 100, 39, 39)
+## left
+redFlagleftOrig = (270, 330, 39, 39)
+orangeFlagleftOrig = (600, 270, 39, 39)
+whiteFlagleftOrig = (490, 190, 39, 39)
+yellowFlagleftOrig = (300, 220, 39, 39)
+greenFlagleftOrig = (390, 160, 39, 39)
+blueFlagleftOrig = (620, 100, 39, 39)
 
-redFlagCenter = pygame.Rect(redFlagCenterOrig)
-orangeFlagCenter = pygame.Rect(orangeFlagCenterOrig)
-whiteFlagCenter = pygame.Rect(whiteFlagCenterOrig)
-yellowFlagCenter = pygame.Rect(yellowFlagCenterOrig)
-greenFlagCenter = pygame.Rect(greenFlagCenterOrig)
-blueFlagCenter = pygame.Rect(blueFlagCenterOrig)
+redFlagleft = pygame.Rect(redFlagleftOrig)
+orangeFlagleft = pygame.Rect(orangeFlagleftOrig)
+whiteFlagleft = pygame.Rect(whiteFlagleftOrig)
+yellowFlagleft = pygame.Rect(yellowFlagleftOrig)
+greenFlagleft = pygame.Rect(greenFlagleftOrig)
+blueFlagleft = pygame.Rect(blueFlagleftOrig)
 ##MIDDLE
 redFlagMiddleOrig = (260, 320, 59, 59)
 orangeFlagMiddleOrig = (580, 270, 59, 59)
@@ -154,20 +157,20 @@ whiteFlagMiddle = pygame.Rect(whiteFlagMiddleOrig)
 yellowFlagMiddle = pygame.Rect(yellowFlagMiddleOrig)
 greenFlagMiddle = pygame.Rect(greenFlagMiddleOrig)
 blueFlagMiddle = pygame.Rect(blueFlagMiddleOrig)
-##Outer
-redFlagOuterOrig = (250, 310, 79, 79)
-orangeFlagOuterOrig = (580, 260, 79, 79)
-whiteFlagOuterOrig = (470, 170, 79, 79)
-yellowFlagOuterOrig = (280, 200, 79, 79)
-greenFlagOuterOrig = (370, 140, 79, 79)
-blueFlagOuterOrig = (600, 80, 79, 79)
+##Right
+redFlagRightOrig = (250, 310, 79, 79)
+orangeFlagRightOrig = (580, 260, 79, 79)
+whiteFlagRightOrig = (470, 170, 79, 79)
+yellowFlagRightOrig = (280, 200, 79, 79)
+greenFlagRightOrig = (370, 140, 79, 79)
+blueFlagRightOrig = (600, 80, 79, 79)
 
-redFlagOuter = pygame.Rect(redFlagOuterOrig)
-orangeFlagOuter = pygame.Rect(orangeFlagOuterOrig)
-whiteFlagOuter = pygame.Rect(whiteFlagOuterOrig)
-yellowFlagOuter = pygame.Rect(yellowFlagOuterOrig)
-greenFlagOuter = pygame.Rect(greenFlagOuterOrig)
-blueFlagOuter = pygame.Rect(blueFlagOuterOrig)
+redFlagRight = pygame.Rect(redFlagRightOrig)
+orangeFlagRight = pygame.Rect(orangeFlagRightOrig)
+whiteFlagRight = pygame.Rect(whiteFlagRightOrig)
+yellowFlagRight = pygame.Rect(yellowFlagRightOrig)
+greenFlagRight = pygame.Rect(greenFlagRightOrig)
+blueFlagRight = pygame.Rect(blueFlagRightOrig)
 timer = time.time()
 pausePoint = 0
 playing = False
@@ -183,7 +186,7 @@ def program(songNum):
     grey = (128,128,128)
     black = (0,0,0)
     state = 0
-    pygame.mixer.music.load("songs/song" + str(songNum) + ".mp3")
+    pygame.mixer.music.load(path + "/songs/song" + str(songNum) + ".mp3")
     #pygame.mixer.music.load("/home/pi/Desktop/coreLightShow/songs/song" + str(songNum) + ".mp3")
 
     while True:
@@ -191,15 +194,15 @@ def program(songNum):
         screen.fill([0,0,0])
         keys = pygame.key.get_pressed()
         # determine if a letter key was pressed 
-        if keys[pygame.K_1]:
-            redFlagColorCenter = (255, 0, 0)
-            redFlagColorMiddle = (255, 0, 0)
-            redFlagColorOuter = (255, 0, 0)
-            #print("Red")
-        else:
-            redFlagColorCenter = (128, 128, 128)
-            redFlagColorMiddle = (128, 128, 128)
-            redFlagColorOuter = (128, 128, 128)
+        # if keys[pygame.K_1]:
+        #     redFlagColorleft = (255, 0, 0)
+        #     redFlagColorMiddle = (255, 0, 0)
+        #     redFlagColorRight = (255, 0, 0)
+        #     #print("Red")
+        # else:
+        #     redFlagColorleft = (128, 128, 128)
+        #     redFlagColorMiddle = (128, 128, 128)
+        #     redFlagColorRight = (128, 128, 128)
         
         for event in pygame.event.get():
         
@@ -207,7 +210,6 @@ def program(songNum):
             # determin if X was clicked, or Ctrl+W or Alt+F4 was used
             if event.type == pygame.QUIT:
                 finish(songNum)
-                #songSequence.to_excel("/home/pi/Desktop/coreLightShow/songs/song" + str(songPlay) + ".xlsx")
 
                 
                 pygame.quit()
@@ -217,8 +219,7 @@ def program(songNum):
                 mouse_pos = event.pos  # gets mouse position
                 if save.collidepoint(mouse_pos):
                     print("Saved")
-                    songSequence.to_excel("songs/songTemp.xlsx")
-                    #songSequence.to_excel("/home/pi/Desktop/coreLightShow/songs/song" + str(songPlay) + ".xlsx")
+                    songSequence.to_excel("songTemp.xlsx")
 
                 
                 checkEvent(mouse_pos)
@@ -226,24 +227,24 @@ def program(songNum):
             i+=1
             if (i%2==0):
                 songSequence = songSequence.append({
-                    'red Inner':redFlagColorCenter,
+                    'red Left':redFlagColorleft,
                     'red Middle':redFlagColorMiddle,
-                    'red Outer':redFlagColorOuter,
-                    'orange Inner':orangeFlagColorCenter,
+                    'red Right':redFlagColorRight,
+                    'orange Left':orangeFlagColorleft,
                     'orange Middle':orangeFlagColorMiddle,
-                    'orange Outer':orangeFlagColorOuter,
-                    'yellow Inner':yellowFlagColorCenter,
+                    'orange Right':orangeFlagColorRight,
+                    'yellow Left':yellowFlagColorleft,
                     'yellow Middle':yellowFlagColorMiddle,
-                    'yellow Outer':yellowFlagColorOuter,
-                    'white Inner':whiteFlagColorCenter,
+                    'yellow Right':yellowFlagColorRight,
+                    'white Left':whiteFlagColorleft,
                     'white Middle':whiteFlagColorMiddle,
-                    'white Outer':whiteFlagColorOuter,
-                    'green Inner':greenFlagColorCenter,
+                    'white Right':whiteFlagColorRight,
+                    'green Left':greenFlagColorleft,
                     'green Middle':greenFlagColorMiddle,
-                    'green Outer':greenFlagColorOuter,
-                    'blue Inner':blueFlagColorCenter,
+                    'green Right':greenFlagColorRight,
+                    'blue Left':blueFlagColorleft,
                     'blue Middle':blueFlagColorMiddle,
-                    'blue Outer':blueFlagColorOuter}, ignore_index=True)
+                    'blue Right':blueFlagColorRight}, ignore_index=True)
 
         lightsOptions(songNum)
         drawRings()   
@@ -355,7 +356,7 @@ def lightsOptions(songNum):
     elif (songNum == 2):
         songName = font.render('Thunderstruck', True, white)
     elif (songNum == 3):
-        songName = font.render('Eye of the TigerHit Me', True, white)
+        songName = font.render('Eye of the Tiger', True, white)
     elif (songNum == 4):
         songName = font.render('Hit Me', True, white)
     elif (songNum == 5):
@@ -1143,7 +1144,7 @@ def blinkHelperG6(delay):
         return False
 
 def drawRings():
-    global g1Action, colorSelected, group1, i, redFlagColorCenter, redFlagColorMiddle, redFlagColorOuter, orangeFlagColorCenter, orangeFlagColorMiddle, orangeFlagColorOuter, yellowFlagColorCenter, yellowFlagColorMiddle, yellowFlagColorOuter, greenFlagColorCenter, greenFlagColorMiddle, greenFlagColorOuter, whiteFlagColorCenter, whiteFlagColorMiddle, whiteFlagColorOuter, blueFlagColorCenter, blueFlagColorMiddle, blueFlagColorOuter
+    global g1Action, colorSelected, group1, i, redFlagColorleft, redFlagColorMiddle, redFlagColorRight, orangeFlagColorleft, orangeFlagColorMiddle, orangeFlagColorRight, yellowFlagColorleft, yellowFlagColorMiddle, yellowFlagColorRight, greenFlagColorleft, greenFlagColorMiddle, greenFlagColorRight, whiteFlagColorleft, whiteFlagColorMiddle, whiteFlagColorRight, blueFlagColorleft, blueFlagColorMiddle, blueFlagColorRight
     color = (128, 128, 128)
     if (1 in group1) and (addingToGroup1 or playing):
         working = g1Action
@@ -1153,12 +1154,14 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
-        redFlagColorOuter = color
+        if (working[0]=="on"):
+            color = working[1]
+        redFlagColorRight = color
         redFlagColorMiddle = color
-        redFlagColorCenter = color
-        pygame.draw.rect(screen, redFlagColorOuter, redFlagOuter)  # draw button
+        redFlagColorleft = color
+        pygame.draw.rect(screen, redFlagColorRight, redFlagRight)  # draw button
         pygame.draw.rect(screen, redFlagColorMiddle, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, redFlagColorCenter, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, redFlagColorleft, redFlagleft)  # draw button
     elif (1 in group2) and (addingToGroup2 or playing):
         working = g2Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1167,13 +1170,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        redFlagColorOuter = color
+        redFlagColorRight = color
         redFlagColorMiddle = color
-        redFlagColorCenter = color
-        pygame.draw.rect(screen, redFlagColorOuter, redFlagOuter)  # draw button
+        redFlagColorleft = color
+        pygame.draw.rect(screen, redFlagColorRight, redFlagRight)  # draw button
         pygame.draw.rect(screen, redFlagColorMiddle, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, redFlagColorCenter, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, redFlagColorleft, redFlagleft)  # draw button
     elif (1 in group3) and (addingToGroup3 or playing):
         working = g3Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1182,13 +1187,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        redFlagColorOuter = color
+        redFlagColorRight = color
         redFlagColorMiddle = color
-        redFlagColorCenter = color
-        pygame.draw.rect(screen, redFlagColorOuter, redFlagOuter)  # draw button
+        redFlagColorleft = color
+        pygame.draw.rect(screen, redFlagColorRight, redFlagRight)  # draw button
         pygame.draw.rect(screen, redFlagColorMiddle, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, redFlagColorCenter, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, redFlagColorleft, redFlagleft)  # draw button
     elif (1 in group4) and (addingToGroup4 or playing):
         working = g4Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1197,13 +1204,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        redFlagColorOuter = color
+        redFlagColorRight = color
         redFlagColorMiddle = color
-        redFlagColorCenter = color
-        pygame.draw.rect(screen, redFlagColorOuter, redFlagOuter)  # draw button
+        redFlagColorleft = color
+        pygame.draw.rect(screen, redFlagColorRight, redFlagRight)  # draw button
         pygame.draw.rect(screen, redFlagColorMiddle, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, redFlagColorCenter, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, redFlagColorleft, redFlagleft)  # draw button
     elif (1 in group5) and (addingToGroup5 or playing):
         working = g5Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1212,13 +1221,17 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
+        if (working[0]=="on"):
+            color = working[1]
 
-        redFlagColorOuter = color
+        redFlagColorRight = color
         redFlagColorMiddle = color
-        redFlagColorCenter = color
-        pygame.draw.rect(screen, redFlagColorOuter, redFlagOuter)  # draw button
+        redFlagColorleft = color
+        pygame.draw.rect(screen, redFlagColorRight, redFlagRight)  # draw button
         pygame.draw.rect(screen, redFlagColorMiddle, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, redFlagColorCenter, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, redFlagColorleft, redFlagleft)  # draw button
     elif (1 in group6) and (addingToGroup6 or playing):
         working = g6Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1227,17 +1240,19 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        redFlagColorOuter = color
+        redFlagColorRight = color
         redFlagColorMiddle = color
-        redFlagColorCenter = color
-        pygame.draw.rect(screen, redFlagColorOuter, redFlagOuter)  # draw button
+        redFlagColorleft = color
+        pygame.draw.rect(screen, redFlagColorRight, redFlagRight)  # draw button
         pygame.draw.rect(screen, redFlagColorMiddle, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, redFlagColorCenter, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, redFlagColorleft, redFlagleft)  # draw button
     else:
-        pygame.draw.rect(screen, grey, redFlagOuter)  # draw button
-        pygame.draw.rect(screen, grey, redFlagMiddle)  # draw button
-        pygame.draw.rect(screen, grey, redFlagCenter)  # draw button
+        pygame.draw.rect(screen, darkGrey, redFlagRight)  # draw button
+        pygame.draw.rect(screen, darkGrey, redFlagMiddle)  # draw button
+        pygame.draw.rect(screen, darkGrey, redFlagleft)  # draw button
     color = (128, 128, 128)
     if (2 in group1) and (addingToGroup1 or playing):
         working = g1Action
@@ -1247,13 +1262,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        orangeFlagColorOuter = color
+        orangeFlagColorRight = color
         orangeFlagColorMiddle = color
-        orangeFlagColorCenter = color
-        pygame.draw.rect(screen, orangeFlagColorOuter, orangeFlagOuter)  # draw button
+        orangeFlagColorleft = color
+        pygame.draw.rect(screen, orangeFlagColorRight, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, orangeFlagColorMiddle, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, orangeFlagColorCenter, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, orangeFlagColorleft, orangeFlagleft)  # draw button
     elif (2 in group2) and (addingToGroup2 or playing):
         working = g2Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1262,13 +1279,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        orangeFlagColorOuter = color
+        orangeFlagColorRight = color
         orangeFlagColorMiddle = color
-        orangeFlagColorCenter = color
-        pygame.draw.rect(screen, orangeFlagColorOuter, orangeFlagOuter)  # draw button
+        orangeFlagColorleft = color
+        pygame.draw.rect(screen, orangeFlagColorRight, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, orangeFlagColorMiddle, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, orangeFlagColorCenter, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, orangeFlagColorleft, orangeFlagleft)  # draw button
     elif (2 in group3) and (addingToGroup3 or playing):
         working = g3Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1277,13 +1296,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        orangeFlagColorOuter = color
+        orangeFlagColorRight = color
         orangeFlagColorMiddle = color
-        orangeFlagColorCenter = color
-        pygame.draw.rect(screen, orangeFlagColorOuter, orangeFlagOuter)  # draw button
+        orangeFlagColorleft = color
+        pygame.draw.rect(screen, orangeFlagColorRight, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, orangeFlagColorMiddle, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, orangeFlagColorCenter, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, orangeFlagColorleft, orangeFlagleft)  # draw button
     elif (2 in group4) and (addingToGroup4 or playing):
         working = g4Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1292,13 +1313,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        orangeFlagColorOuter = color
+        orangeFlagColorRight = color
         orangeFlagColorMiddle = color
-        orangeFlagColorCenter = color
-        pygame.draw.rect(screen, orangeFlagColorOuter, orangeFlagOuter)  # draw button
+        orangeFlagColorleft = color
+        pygame.draw.rect(screen, orangeFlagColorRight, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, orangeFlagColorMiddle, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, orangeFlagColorCenter, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, orangeFlagColorleft, orangeFlagleft)  # draw button
     elif (2 in group5) and (addingToGroup5 or playing):
         working = g5Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1307,13 +1330,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        orangeFlagColorOuter = color
+        orangeFlagColorRight = color
         orangeFlagColorMiddle = color
-        orangeFlagColorCenter = color
-        pygame.draw.rect(screen, orangeFlagColorOuter, orangeFlagOuter)  # draw button
+        orangeFlagColorleft = color
+        pygame.draw.rect(screen, orangeFlagColorRight, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, orangeFlagColorMiddle, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, orangeFlagColorCenter, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, orangeFlagColorleft, orangeFlagleft)  # draw button
     elif (2 in group6) and (addingToGroup6 or playing):
         working = g6Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1322,17 +1347,19 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        orangeFlagColorOuter = color
+        orangeFlagColorRight = color
         orangeFlagColorMiddle = color
-        orangeFlagColorCenter = color
-        pygame.draw.rect(screen, orangeFlagColorOuter, orangeFlagOuter)  # draw button
+        orangeFlagColorleft = color
+        pygame.draw.rect(screen, orangeFlagColorRight, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, orangeFlagColorMiddle, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, orangeFlagColorCenter, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, orangeFlagColorleft, orangeFlagleft)  # draw button
     else:
-        pygame.draw.rect(screen, grey, orangeFlagOuter)  # draw button
-        pygame.draw.rect(screen, grey, orangeFlagMiddle)  # draw button
-        pygame.draw.rect(screen, grey, orangeFlagCenter)  # draw button
+        pygame.draw.rect(screen, darkGrey, orangeFlagRight)  # draw button
+        pygame.draw.rect(screen, darkGrey, orangeFlagMiddle)  # draw button
+        pygame.draw.rect(screen, darkGrey, orangeFlagleft)  # draw button
     color = (128, 128, 128)
     if (3 in group1) and (addingToGroup1 or playing):
         working = g1Action
@@ -1342,13 +1369,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], g3Action[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        yellowFlagColorOuter = color
+        yellowFlagColorRight = color
         yellowFlagColorMiddle = color
-        yellowFlagColorCenter = color
-        pygame.draw.rect(screen, yellowFlagColorOuter, yellowFlagOuter)  # draw button
+        yellowFlagColorleft = color
+        pygame.draw.rect(screen, yellowFlagColorRight, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, yellowFlagColorMiddle, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, yellowFlagColorCenter, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, yellowFlagColorleft, yellowFlagleft)  # draw button
     elif (3 in group2) and (addingToGroup2 or playing):
         working = g2Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1357,13 +1386,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], g3Action[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        yellowFlagColorOuter = color
+        yellowFlagColorRight = color
         yellowFlagColorMiddle = color
-        yellowFlagColorCenter = color
-        pygame.draw.rect(screen, yellowFlagColorOuter, yellowFlagOuter)  # draw button
+        yellowFlagColorleft = color
+        pygame.draw.rect(screen, yellowFlagColorRight, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, yellowFlagColorMiddle, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, yellowFlagColorCenter, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, yellowFlagColorleft, yellowFlagleft)  # draw button
     elif (3 in group3) and (addingToGroup3 or playing):
         working = g3Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1372,13 +1403,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], g3Action[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        yellowFlagColorOuter = color
+        yellowFlagColorRight = color
         yellowFlagColorMiddle = color
-        yellowFlagColorCenter = color
-        pygame.draw.rect(screen, yellowFlagColorOuter, yellowFlagOuter)  # draw button
+        yellowFlagColorleft = color
+        pygame.draw.rect(screen, yellowFlagColorRight, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, yellowFlagColorMiddle, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, yellowFlagColorCenter, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, yellowFlagColorleft, yellowFlagleft)  # draw button
     elif (3 in group4) and (addingToGroup4 or playing):
         working = g4Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1387,13 +1420,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], g3Action[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        yellowFlagColorOuter = color
+        yellowFlagColorRight = color
         yellowFlagColorMiddle = color
-        yellowFlagColorCenter = color
-        pygame.draw.rect(screen, yellowFlagColorOuter, yellowFlagOuter)  # draw button
+        yellowFlagColorleft = color
+        pygame.draw.rect(screen, yellowFlagColorRight, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, yellowFlagColorMiddle, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, yellowFlagColorCenter, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, yellowFlagColorleft, yellowFlagleft)  # draw button
     elif (3 in group5) and (addingToGroup5 or playing):
         working = g5Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1402,13 +1437,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], g3Action[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        yellowFlagColorOuter = color
+        yellowFlagColorRight = color
         yellowFlagColorMiddle = color
-        yellowFlagColorCenter = color
-        pygame.draw.rect(screen, yellowFlagColorOuter, yellowFlagOuter)  # draw button
+        yellowFlagColorleft = color
+        pygame.draw.rect(screen, yellowFlagColorRight, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, yellowFlagColorMiddle, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, yellowFlagColorCenter, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, yellowFlagColorleft, yellowFlagleft)  # draw button
     elif (3 in group6) and (addingToGroup6 or playing):
         working = g6Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1417,17 +1454,19 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], g3Action[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        yellowFlagColorOuter = color
+        yellowFlagColorRight = color
         yellowFlagColorMiddle = color
-        yellowFlagColorCenter = color
-        pygame.draw.rect(screen, yellowFlagColorOuter, yellowFlagOuter)  # draw button
+        yellowFlagColorleft = color
+        pygame.draw.rect(screen, yellowFlagColorRight, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, yellowFlagColorMiddle, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, yellowFlagColorCenter, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, yellowFlagColorleft, yellowFlagleft)  # draw button
     else:
-        pygame.draw.rect(screen, color, yellowFlagOuter)  # draw button
-        pygame.draw.rect(screen, color, yellowFlagMiddle)  # draw button
-        pygame.draw.rect(screen, color, yellowFlagCenter)  # draw button
+        pygame.draw.rect(screen, darkGrey, yellowFlagRight)  # draw button
+        pygame.draw.rect(screen, darkGrey, yellowFlagMiddle)  # draw button
+        pygame.draw.rect(screen, darkGrey, yellowFlagleft)  # draw button
     color = (128, 128, 128)
     if (4 in group1) and (addingToGroup1 or playing):
         working = g1Action
@@ -1437,13 +1476,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        whiteFlagColorOuter = color
+        whiteFlagColorRight = color
         whiteFlagColorMiddle = color
-        whiteFlagColorCenter = color
-        pygame.draw.rect(screen, whiteFlagColorOuter, whiteFlagOuter)  # draw button
+        whiteFlagColorleft = color
+        pygame.draw.rect(screen, whiteFlagColorRight, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, whiteFlagColorMiddle, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, whiteFlagColorCenter, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, whiteFlagColorleft, whiteFlagleft)  # draw button
     elif (4 in group2) and (addingToGroup2 or playing):
         working = g2Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1452,13 +1493,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        whiteFlagColorOuter = color
+        whiteFlagColorRight = color
         whiteFlagColorMiddle = color
-        whiteFlagColorCenter = color
-        pygame.draw.rect(screen, whiteFlagColorOuter, whiteFlagOuter)  # draw button
+        whiteFlagColorleft = color
+        pygame.draw.rect(screen, whiteFlagColorRight, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, whiteFlagColorMiddle, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, whiteFlagColorCenter, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, whiteFlagColorleft, whiteFlagleft)  # draw button
     elif (4 in group3) and (addingToGroup3 or playing):
         working = g3Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1467,13 +1510,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        whiteFlagColorOuter = color
+        whiteFlagColorRight = color
         whiteFlagColorMiddle = color
-        whiteFlagColorCenter = color
-        pygame.draw.rect(screen, whiteFlagColorOuter, whiteFlagOuter)  # draw button
+        whiteFlagColorleft = color
+        pygame.draw.rect(screen, whiteFlagColorRight, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, whiteFlagColorMiddle, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, whiteFlagColorCenter, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, whiteFlagColorleft, whiteFlagleft)  # draw button
     elif (4 in group4) and (addingToGroup4 or playing):
         working = g4Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1482,13 +1527,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        whiteFlagColorOuter = color
+        whiteFlagColorRight = color
         whiteFlagColorMiddle = color
-        whiteFlagColorCenter = color
-        pygame.draw.rect(screen, whiteFlagColorOuter, whiteFlagOuter)  # draw button
+        whiteFlagColorleft = color
+        pygame.draw.rect(screen, whiteFlagColorRight, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, whiteFlagColorMiddle, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, whiteFlagColorCenter, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, whiteFlagColorleft, whiteFlagleft)  # draw button
     elif (4 in group5) and (addingToGroup5 or playing):
         working = g5Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1497,13 +1544,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        whiteFlagColorOuter = color
+        whiteFlagColorRight = color
         whiteFlagColorMiddle = color
-        whiteFlagColorCenter = color
-        pygame.draw.rect(screen, whiteFlagColorOuter, whiteFlagOuter)  # draw button
+        whiteFlagColorleft = color
+        pygame.draw.rect(screen, whiteFlagColorRight, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, whiteFlagColorMiddle, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, whiteFlagColorCenter, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, whiteFlagColorleft, whiteFlagleft)  # draw button
     elif (4 in group6) and (addingToGroup6 or playing):
         working = g6Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1512,17 +1561,19 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        whiteFlagColorOuter = color
+        whiteFlagColorRight = color
         whiteFlagColorMiddle = color
-        whiteFlagColorCenter = color
-        pygame.draw.rect(screen, whiteFlagColorOuter, whiteFlagOuter)  # draw button
+        whiteFlagColorleft = color
+        pygame.draw.rect(screen, whiteFlagColorRight, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, whiteFlagColorMiddle, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, whiteFlagColorCenter, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, whiteFlagColorleft, whiteFlagleft)  # draw button
     else:
-        pygame.draw.rect(screen, color, whiteFlagOuter)  # draw button
-        pygame.draw.rect(screen, color, whiteFlagMiddle)  # draw button
-        pygame.draw.rect(screen, color, whiteFlagCenter)  # draw button
+        pygame.draw.rect(screen, darkGrey, whiteFlagRight)  # draw button
+        pygame.draw.rect(screen, darkGrey, whiteFlagMiddle)  # draw button
+        pygame.draw.rect(screen, darkGrey, whiteFlagleft)  # draw button
     color = (128, 128, 128)
     if (5 in group1) and (addingToGroup1 or playing):
         working = g1Action
@@ -1532,13 +1583,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        greenFlagColorOuter = color
+        greenFlagColorRight = color
         greenFlagColorMiddle = color
-        greenFlagColorCenter = color
-        pygame.draw.rect(screen, greenFlagColorOuter, greenFlagOuter)  # draw button
+        greenFlagColorleft = color
+        pygame.draw.rect(screen, greenFlagColorRight, greenFlagRight)  # draw button
         pygame.draw.rect(screen, greenFlagColorMiddle, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, greenFlagColorCenter, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, greenFlagColorleft, greenFlagleft)  # draw button
     elif (5 in group2) and (addingToGroup2 or playing):
         working = g2Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1547,13 +1600,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        greenFlagColorOuter = color
+        greenFlagColorRight = color
         greenFlagColorMiddle = color
-        greenFlagColorCenter = color
-        pygame.draw.rect(screen, greenFlagColorOuter, greenFlagOuter)  # draw button
+        greenFlagColorleft = color
+        pygame.draw.rect(screen, greenFlagColorRight, greenFlagRight)  # draw button
         pygame.draw.rect(screen, greenFlagColorMiddle, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, greenFlagColorCenter, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, greenFlagColorleft, greenFlagleft)  # draw button
     elif (5 in group3) and (addingToGroup3 or playing):
         working = g3Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1562,13 +1617,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        greenFlagColorOuter = color
+        greenFlagColorRight = color
         greenFlagColorMiddle = color
-        greenFlagColorCenter = color
-        pygame.draw.rect(screen, greenFlagColorOuter, greenFlagOuter)  # draw button
+        greenFlagColorleft = color
+        pygame.draw.rect(screen, greenFlagColorRight, greenFlagRight)  # draw button
         pygame.draw.rect(screen, greenFlagColorMiddle, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, greenFlagColorCenter, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, greenFlagColorleft, greenFlagleft)  # draw button
     elif (5 in group4) and (addingToGroup4 or playing):
         working = g4Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1577,13 +1634,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        greenFlagColorOuter = color
+        greenFlagColorRight = color
         greenFlagColorMiddle = color
-        greenFlagColorCenter = color
-        pygame.draw.rect(screen, greenFlagColorOuter, greenFlagOuter)  # draw button
+        greenFlagColorleft = color
+        pygame.draw.rect(screen, greenFlagColorRight, greenFlagRight)  # draw button
         pygame.draw.rect(screen, greenFlagColorMiddle, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, greenFlagColorCenter, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, greenFlagColorleft, greenFlagleft)  # draw button
     elif (5 in group5) and (addingToGroup5 or playing):
         working = g5Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1592,13 +1651,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        greenFlagColorOuter = color
+        greenFlagColorRight = color
         greenFlagColorMiddle = color
-        greenFlagColorCenter = color
-        pygame.draw.rect(screen, greenFlagColorOuter, greenFlagOuter)  # draw button
+        greenFlagColorleft = color
+        pygame.draw.rect(screen, greenFlagColorRight, greenFlagRight)  # draw button
         pygame.draw.rect(screen, greenFlagColorMiddle, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, greenFlagColorCenter, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, greenFlagColorleft, greenFlagleft)  # draw button
     elif (5 in group6) and (addingToGroup6 or playing):
         working = g6Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1607,17 +1668,19 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        greenFlagColorOuter = color
+        greenFlagColorRight = color
         greenFlagColorMiddle = color
-        greenFlagColorCenter = color
-        pygame.draw.rect(screen, greenFlagColorOuter, greenFlagOuter)  # draw button
+        greenFlagColorleft = color
+        pygame.draw.rect(screen, greenFlagColorRight, greenFlagRight)  # draw button
         pygame.draw.rect(screen, greenFlagColorMiddle, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, greenFlagColorCenter, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, greenFlagColorleft, greenFlagleft)  # draw button
     else:
-        pygame.draw.rect(screen, grey, greenFlagOuter)  # draw button
-        pygame.draw.rect(screen, color, greenFlagMiddle)  # draw button
-        pygame.draw.rect(screen, color, greenFlagCenter)  # draw button
+        pygame.draw.rect(screen, darkGrey, greenFlagRight)  # draw button
+        pygame.draw.rect(screen, darkGrey, greenFlagMiddle)  # draw button
+        pygame.draw.rect(screen, darkGrey, greenFlagleft)  # draw button
     color = (128, 128, 128)
     if (6 in group1) and (addingToGroup1 or playing):
         working = g1Action
@@ -1627,13 +1690,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        blueFlagColorOuter = color
+        blueFlagColorRight = color
         blueFlagColorMiddle = color
-        blueFlagColorCenter = color
-        pygame.draw.rect(screen, blueFlagColorOuter, blueFlagOuter)  # draw button
+        blueFlagColorleft = color
+        pygame.draw.rect(screen, blueFlagColorRight, blueFlagRight)  # draw button
         pygame.draw.rect(screen, blueFlagColorMiddle, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, blueFlagColorCenter, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, blueFlagColorleft, blueFlagleft)  # draw button
     elif (6 in group2) and (addingToGroup2 or playing):
         working = g2Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1642,13 +1707,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        blueFlagColorOuter = color
+        blueFlagColorRight = color
         blueFlagColorMiddle = color
-        blueFlagColorCenter = color
-        pygame.draw.rect(screen, blueFlagColorOuter, blueFlagOuter)  # draw button
+        blueFlagColorleft = color
+        pygame.draw.rect(screen, blueFlagColorRight, blueFlagRight)  # draw button
         pygame.draw.rect(screen, blueFlagColorMiddle, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, blueFlagColorCenter, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, blueFlagColorleft, blueFlagleft)  # draw button
     elif (6 in group3) and (addingToGroup3 or playing):
         working = g3Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1657,13 +1724,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        blueFlagColorOuter = color
+        blueFlagColorRight = color
         blueFlagColorMiddle = color
-        blueFlagColorCenter = color
-        pygame.draw.rect(screen, blueFlagColorOuter, blueFlagOuter)  # draw button
+        blueFlagColorleft = color
+        pygame.draw.rect(screen, blueFlagColorRight, blueFlagRight)  # draw button
         pygame.draw.rect(screen, blueFlagColorMiddle, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, blueFlagColorCenter, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, blueFlagColorleft, blueFlagleft)  # draw button
     elif (6 in group4) and (addingToGroup4 or playing):
         working = g4Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1672,13 +1741,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        blueFlagColorOuter = color
+        blueFlagColorRight = color
         blueFlagColorMiddle = color
-        blueFlagColorCenter = color
-        pygame.draw.rect(screen, blueFlagColorOuter, blueFlagOuter)  # draw button
+        blueFlagColorleft = color
+        pygame.draw.rect(screen, blueFlagColorRight, blueFlagRight)  # draw button
         pygame.draw.rect(screen, blueFlagColorMiddle, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, blueFlagColorCenter, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, blueFlagColorleft, blueFlagleft)  # draw button
     elif (6 in group5) and (addingToGroup5 or playing):
         working = g5Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1687,13 +1758,15 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
+        if (working[0]=="on"):
+            color = working[1]
 
-        blueFlagColorOuter = color
+        blueFlagColorRight = color
         blueFlagColorMiddle = color
-        blueFlagColorCenter = color
-        pygame.draw.rect(screen, blueFlagColorOuter, blueFlagOuter)  # draw button
+        blueFlagColorleft = color
+        pygame.draw.rect(screen, blueFlagColorRight, blueFlagRight)  # draw button
         pygame.draw.rect(screen, blueFlagColorMiddle, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, blueFlagColorCenter, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, blueFlagColorleft, blueFlagleft)  # draw button
     elif (6 in group6) and (addingToGroup6 or playing):
         working = g6Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
@@ -1702,16 +1775,19 @@ def drawRings():
                 color = (128, 128, 128)
             else:
                 color = fadeHelper(working[1], working[3])
-        blueFlagColorOuter = color
+        if (working[0]=="on"):
+            color = working[1]
+
+        blueFlagColorRight = color
         blueFlagColorMiddle = color
-        blueFlagColorCenter = color
-        pygame.draw.rect(screen, blueFlagColorOuter, blueFlagOuter)  # draw button
+        blueFlagColorleft = color
+        pygame.draw.rect(screen, blueFlagColorRight, blueFlagRight)  # draw button
         pygame.draw.rect(screen, blueFlagColorMiddle, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, blueFlagColorCenter, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, blueFlagColorleft, blueFlagleft)  # draw button
     else:
-        pygame.draw.rect(screen, color, blueFlagOuter)  # draw button
-        pygame.draw.rect(screen, color, blueFlagMiddle)  # draw button
-        pygame.draw.rect(screen, color, blueFlagCenter)  # draw button
+        pygame.draw.rect(screen, darkGrey, blueFlagRight)  # draw button
+        pygame.draw.rect(screen, darkGrey, blueFlagMiddle)  # draw button
+        pygame.draw.rect(screen, darkGrey, blueFlagleft)  # draw button
     
     #print(str(g1Action) + " " + str(group1) + " " + str(g2Action) + " " + str(group2) + " " + str(g3Action) + " " + str(group3) + " " + str(g4Action) + " " + str(group4) + " " + str(g5Action) + " " + str(group5) + " " + str(g6Action) + " " + str(group6))
     
@@ -1720,8 +1796,6 @@ colorSelected = white
 
 def checkEvent(mouse_pos):
     global place, timer, pausePoint, addingToGroup1, selected, playing, songSequence, actingGroup, colorSelected, g1Action, g1Color, g2Color, g3Color, g4Color, g5Color, g6Color, addingToGroup2, addingToGroup3, addingToGroup4, addingToGroup5, addingToGroup6
-    
-
 
     if g1.collidepoint(mouse_pos):
         if (addingToGroup1):
@@ -1789,7 +1863,7 @@ def checkEvent(mouse_pos):
             sliderIntensity.setValue(g1Action[3])
             colorSelected = g6Action[1]
 
-    if redFlagOuter.collidepoint(mouse_pos):
+    if redFlagRight.collidepoint(mouse_pos):
         selected = 1
         if addingToGroup1:
             if selected in group1:
@@ -1823,7 +1897,7 @@ def checkEvent(mouse_pos):
                 group6.append(selected)
         
         
-    if orangeFlagOuter.collidepoint(mouse_pos):
+    if orangeFlagRight.collidepoint(mouse_pos):
         selected = 2
         if addingToGroup1:
             if selected in group1:
@@ -1856,7 +1930,7 @@ def checkEvent(mouse_pos):
             else:
                 group6.append(selected)
 
-    if yellowFlagOuter.collidepoint(mouse_pos):
+    if yellowFlagRight.collidepoint(mouse_pos):
         selected = 3
         if addingToGroup1:
             if selected in group1:
@@ -1889,7 +1963,7 @@ def checkEvent(mouse_pos):
             else:
                 group6.append(selected)
 
-    if whiteFlagOuter.collidepoint(mouse_pos):
+    if whiteFlagRight.collidepoint(mouse_pos):
         selected = 4
         if addingToGroup1:
             if selected in group1:
@@ -1922,7 +1996,7 @@ def checkEvent(mouse_pos):
             else:
                 group6.append(selected)
 
-    if greenFlagOuter.collidepoint(mouse_pos):
+    if greenFlagRight.collidepoint(mouse_pos):
         selected = 5
         if addingToGroup1:
             if selected in group1:
@@ -1955,7 +2029,7 @@ def checkEvent(mouse_pos):
             else:
                 group6.append(selected)
 
-    if blueFlagOuter.collidepoint(mouse_pos):
+    if blueFlagRight.collidepoint(mouse_pos):
         selected = 6
         if addingToGroup1:
             if selected in group1:
