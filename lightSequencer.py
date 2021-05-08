@@ -12,20 +12,20 @@ sys.path.append('/Users/s1034274/Desktop/globals/')
 from constants import path
 from compiler import compile, finish
 
-red = (255,0,0)
-orange = (255,128,0)
-blue = (0,0,255)
-yellow = (255,255,0)
-green = (0,255,0)
-darkRed = (255/2,0,0)
-darkOrange = (255/2,128/2,0)
-darkBlue = (0,0,255/2)
-darkYellow = (255/2,255/2,0)
-darkGreen = (0,255/2,0)
-white = (255,255,255)
-grey = (128,128,128)
-darkGrey = (64,64,64)
-black = (0,0,0)
+red = (255.0,0.0,0.0)
+orange = (255.0,128.0,0.0)
+blue = (0.0,0.0,255.0)
+yellow = (255.0,255.0,0.0)
+green = (0.0,255.0,0.0)
+darkRed = (255/2.0,0.0,0.0)
+darkOrange = (255/2.0,128/2.0,0.0)
+darkBlue = (0.0,0.0,255/2.0)
+darkYellow = (255/2.0,255/2.0,0.0)
+darkGreen = (0.0,255/2.0,0.0)
+white = (255.0,255.0,255.0)
+grey = (128.0,128.0,128.0)
+darkGrey = (64.0,64.0,64.0)
+black = (0.0,0.0,0.0)
 
 group1 = []
 g1Action = ["off", str(white), 7500, 255]
@@ -1145,13 +1145,13 @@ def blinkHelperG6(delay):
 
 def drawRings():
     global g1Action, colorSelected, group1, i, redFlagColorleft, redFlagColorMiddle, redFlagColorRight, orangeFlagColorleft, orangeFlagColorMiddle, orangeFlagColorRight, yellowFlagColorleft, yellowFlagColorMiddle, yellowFlagColorRight, greenFlagColorleft, greenFlagColorMiddle, greenFlagColorRight, whiteFlagColorleft, whiteFlagColorMiddle, whiteFlagColorRight, blueFlagColorleft, blueFlagColorMiddle, blueFlagColorRight
-    color = (0, 0, 0)
+    color = (0.0, 0.0, 0.0)
     if (1 in group1) and (addingToGroup1 or playing):
         working = g1Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG1(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1167,7 +1167,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG2(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1184,7 +1184,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG3(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1201,7 +1201,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG4(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1218,7 +1218,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG5(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1237,7 +1237,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG6(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1253,13 +1253,13 @@ def drawRings():
         pygame.draw.rect(screen, darkGrey, redFlagRight)  # draw button
         pygame.draw.rect(screen, darkGrey, redFlagMiddle)  # draw button
         pygame.draw.rect(screen, darkGrey, redFlagleft)  # draw button
-    color = (0, 0, 0)
+    color = (0.0, 0.0, 0.0)
     if (2 in group1) and (addingToGroup1 or playing):
         working = g1Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG1(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1276,7 +1276,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG2(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1293,7 +1293,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG3(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1310,7 +1310,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG4(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1327,7 +1327,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG5(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1344,7 +1344,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG6(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1360,13 +1360,13 @@ def drawRings():
         pygame.draw.rect(screen, darkGrey, orangeFlagRight)  # draw button
         pygame.draw.rect(screen, darkGrey, orangeFlagMiddle)  # draw button
         pygame.draw.rect(screen, darkGrey, orangeFlagleft)  # draw button
-    color = (0, 0, 0)
+    color = (0.0, 0.0, 0.0)
     if (3 in group1) and (addingToGroup1 or playing):
         working = g1Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG1(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], g3Action[3])
         if (working[0]=="on"):
@@ -1383,7 +1383,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG2(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], g3Action[3])
         if (working[0]=="on"):
@@ -1400,7 +1400,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG3(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], g3Action[3])
         if (working[0]=="on"):
@@ -1417,7 +1417,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG4(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], g3Action[3])
         if (working[0]=="on"):
@@ -1434,7 +1434,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG5(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], g3Action[3])
         if (working[0]=="on"):
@@ -1451,7 +1451,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG6(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], g3Action[3])
         if (working[0]=="on"):
@@ -1467,13 +1467,13 @@ def drawRings():
         pygame.draw.rect(screen, darkGrey, yellowFlagRight)  # draw button
         pygame.draw.rect(screen, darkGrey, yellowFlagMiddle)  # draw button
         pygame.draw.rect(screen, darkGrey, yellowFlagleft)  # draw button
-    color = (0, 0, 0)
+    color = (0.0, 0.0, 0.0)
     if (4 in group1) and (addingToGroup1 or playing):
         working = g1Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG1(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1490,7 +1490,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG2(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1507,7 +1507,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG3(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1524,7 +1524,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG4(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1541,7 +1541,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG5(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1558,7 +1558,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG6(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1574,13 +1574,13 @@ def drawRings():
         pygame.draw.rect(screen, darkGrey, whiteFlagRight)  # draw button
         pygame.draw.rect(screen, darkGrey, whiteFlagMiddle)  # draw button
         pygame.draw.rect(screen, darkGrey, whiteFlagleft)  # draw button
-    color = (0, 0, 0)
+    color = (0.0, 0.0, 0.0)
     if (5 in group1) and (addingToGroup1 or playing):
         working = g1Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG1(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1597,7 +1597,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG2(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1614,7 +1614,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG3(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1631,7 +1631,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG4(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1648,7 +1648,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG5(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1665,7 +1665,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG6(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1681,13 +1681,13 @@ def drawRings():
         pygame.draw.rect(screen, darkGrey, greenFlagRight)  # draw button
         pygame.draw.rect(screen, darkGrey, greenFlagMiddle)  # draw button
         pygame.draw.rect(screen, darkGrey, greenFlagleft)  # draw button
-    color = (0, 0, 0)
+    color = (0.0, 0.0, 0.0)
     if (6 in group1) and (addingToGroup1 or playing):
         working = g1Action
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG1(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1704,7 +1704,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG2(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1721,7 +1721,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG3(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1738,7 +1738,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG4(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1755,7 +1755,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG5(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
@@ -1772,7 +1772,7 @@ def drawRings():
         if (working[0]=="blink" or working[0]=="sparkle" or working[0]=="pulse"):
             wait = working[2]
             if (not blinkHelperG6(float(wait))):
-                color = (0, 0, 0)
+                color = (0.0, 0.0, 0.0)
             else:
                 color = fadeHelper(working[1], working[3])
         if (working[0]=="on"):
