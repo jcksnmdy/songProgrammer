@@ -8,19 +8,19 @@ import signal
 import threading
 import pygame_widgets
 import sys
-sys.path.append('/Users/s1034274/Desktop/globals/')
+sys.path.append('/home/pi/Desktop/globals/')
 from constants import path
 from compiler import compile, finish
 
 red = (255.0,0.0,0.0)
-orange = (255.0,128.0,0.0)
+orange = (255.0,35.0,0.0)
 blue = (0.0,0.0,255.0)
-yellow = (255.0,255.0,0.0)
+yellow = (255.0,128.0,0.0)
 green = (0.0,255.0,0.0)
 darkRed = (255/2.0,0.0,0.0)
-darkOrange = (255/2.0,128/2.0,0.0)
+darkOrange = (255/2.0,20.0,0.0)
 darkBlue = (0.0,0.0,255/2.0)
-darkYellow = (255/2.0,255/2.0,0.0)
+darkYellow = (255/2.0,128/2.0,0.0)
 darkGreen = (0.0,255/2.0,0.0)
 white = (255.0,255.0,255.0)
 grey = (128.0,128.0,128.0)

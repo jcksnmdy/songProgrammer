@@ -5,7 +5,8 @@ import time
 import random
 import subprocess
 import sys
-sys.path.append('/Users/s1034274/Desktop/globals/')
+sys.path.append('/home/pi/Desktop/globals/')
+#sys.path.append('/Users/s1034274/Desktop/globals/')
 from constants import path
 
 color = (255, 255, 255)
