@@ -1,5 +1,4 @@
 import pandas as pd
-import pygame
 import os
 import time
 import random
@@ -13,8 +12,8 @@ color = (255, 255, 255)
 df = pd.read_excel(path + "/songProgrammer/songTemp.xlsx")
 songSequence = pd.DataFrame()
 
-def compile(df):
-    global color, songSequence
+def compile():
+    global color, songSequence, df
     i = 0
     while (i < len(df)):
         print(str(df.loc[(i),'red Left']) + "  " + str(i) + "/" + str(len(df)))
@@ -52,3 +51,7 @@ def toTuple(before):
     returning = (firstNum, secNum, thirdNum)
     print(returning)
     return returning
+
+num = int(input("Song number: "))
+compile()
+finish(num)

@@ -10,7 +10,7 @@ import pygame_widgets
 import sys
 sys.path.append('/home/pi/Desktop/globals/')
 from constants import path
-from compiler import compile, finish
+#from compiler import compile, finish
 
 red = (255.0,0.0,0.0)
 orange = (255.0,35.0,0.0)
@@ -175,8 +175,10 @@ timer = time.time()
 pausePoint = 0
 playing = False
 # Load the programmer
+songNumG = 1
 def program(songNum):
-    global timer, songSequence, i
+    global timer, songSequence, i, songNumG
+    songNumG = songNum
     red = (255,0,0)
     orange = (255,128,0)
     blue = (0,0,255)
@@ -209,9 +211,6 @@ def program(songNum):
             
             # determin if X was clicked, or Ctrl+W or Alt+F4 was used
             if event.type == pygame.QUIT:
-                finish(songNum)
-
-                
                 pygame.quit()
                 return
 
@@ -259,18 +258,17 @@ font = pygame.font.Font('freesansbold.ttf', 28)
 songName = font.render('Hit Me', True, white)
 timeElapsed = font.render('0:00', True, black)
 
+indicateY = font.render('Y', True, white)
+indicateO = font.render('O', True, white)
+
 song = 1
 
 upperAstetic = pygame.Rect(0, 0, 750, 70)
 middleAstetic = pygame.Rect(0, 0, 230, 500)
 lowerAstetic = pygame.Rect(0, 400, 750, 100)
 
-restart = pygame.Rect(515, 10, 99, 25)
-restartText = font.render('Restart', True, black)
 save = pygame.Rect(515, 40, 99, 25)
 saveText = font.render('Save', True, black)
-export = pygame.Rect(625, 10, 119, 55)
-exportText = font.render('Export', True, black)
 
 pulseButton = pygame.Rect(10, 10, 79, 79)
 sparkleButton = pygame.Rect(90, 10, 79, 79)
@@ -366,14 +364,12 @@ def lightsOptions(songNum):
     elif (songNum == 7):
         songName = font.render('Thriller', True, white)
 
-    pygame.draw.rect(screen, white, restart)  # draw button
+
     screen.blit(songName, (260, 10))
     screen.blit(timeElapsed, (270, 40))
-    screen.blit(restartText, restart)
+
     pygame.draw.rect(screen, white, save)  # draw button
     screen.blit(saveText, save)
-    pygame.draw.rect(screen, white, export)  # draw button
-    screen.blit(exportText, (630, 25))
 
     screen.blit(speedText, (10, 265))
     slider.listen(pygame.event.get())
@@ -1057,6 +1053,8 @@ def lightsOptions(songNum):
         pygame.draw.rect(screen, darkOrange, orangeColor)  # draw button
     
     screen.blit(pulseButtonText, pulseButton)
+    screen.blit(indicateY, yellowColor)
+    screen.blit(indicateO, orangeColor)
     screen.blit(offButtonText, offButton)
     screen.blit(blinkButtonText, blinkButton)
     screen.blit(fadeButtonText, fadeButton)
@@ -2081,11 +2079,7 @@ def checkEvent(mouse_pos):
         place += int(pygame.mixer.music.get_pos()/1000)
         pygame.mixer.music.stop()
     
-    if restart.collidepoint(mouse_pos):
-        print("Restart")
-        while (len(songSequence)>0):
-            songSequence.drop([0, 1])
-        place = 0
+        
 
     if fadeButton.collidepoint(mouse_pos):
         if (addingToGroup1):
@@ -2183,7 +2177,3 @@ def checkEvent(mouse_pos):
         colorSelected = white
     if greenColor.collidepoint(mouse_pos):
         colorSelected = green
-
-    if export.collidepoint(mouse_pos):
-        print("Exported")
-        compile(songSequence)
