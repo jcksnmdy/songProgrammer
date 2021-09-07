@@ -8,11 +8,12 @@ import signal
 import threading
 from lightSequencer import program
 import sys
-sys.path.append('/home/pi/Desktop/globals/')
-#sys.path.append('/Users/s1034274/Desktop/globals/')
-from constants import monHipHop, tuesRock, wedWayBack, thursThrowback, fridayHits, satDisco, sunCountry, numSongs, numStations, holiday, michealJ, yacht
+#sys.path.append('/home/pi/Desktop/globals/')
+sys.path.append('/Users/s1034274/Desktop/globals/')
+from constants import monHipHop, tuesRock, wedWayBack, thursThrowback, fridayHits, satDisco, sunCountry, numStations, holiday, michealJ, yacht
 
 lights = pygame.Rect(115, 10, 99, 39)
+numSongs = 8
 
 red = (255,0,0)
 orange = (255,128,0)
@@ -81,11 +82,17 @@ def lightsOptions(mouse_pos):
     elif (song == 4):
         songName = font.render('Hit Me', True, white)
     elif (song == 5):
-        songName = font.render('Despacito', True, white)
+        songName = font.render('Enter Sandman', True, white)
     elif (song == 6):
         songName = font.render('Beat It', True, white)
     elif (song == 7):
-        songName = font.render('Thriller', True, white)
+        songName = font.render('Lil Bit', True, white)
+    elif (song == 8):
+        songName = font.render('Beggin', True, white)
+    elif (song == 9):
+        songName = font.render('Yeah!', True, white)
+    elif (song == 10):
+        songName = font.render('Uptown', True, white)
     
     pygame.draw.rect(screen, white, loadButton)  # draw button
     pygame.draw.rect(screen, white, pastSong)  # draw button

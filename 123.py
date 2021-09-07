@@ -11,7 +11,6 @@ from constants import path
 num = int(input("Song number: "))
 
 color = (255, 255, 255)
-df = pd.read_excel(path + "/songProgrammer/songTemp.xlsx")
 dfToAdd = pd.read_excel("songs/song" + str(num) + ".xlsx")
 
 songSequence = pd.DataFrame()
@@ -32,35 +31,17 @@ def compile():
     i = 5
     while (i < len(dfToAdd)):
 
-        if (dfToAdd.loc[(i),'Red 1'] == "(128.0, 128.0, 128.0)" or dfToAdd.loc[(i),'Red 1'] == "(0.0, 0.0, 0.0)"):
-            reds = df.loc[(i),'red Left']
-        else:
-            reds = dfToAdd.loc[(i),'Red 1']
+        reds = dfToAdd.loc[(i),'Red 1']
 
-        if (dfToAdd.loc[(i),'Orange 2'] == "(128.0, 128.0, 128.0)" or dfToAdd.loc[(i),'Orange 2'] == "(0.0, 0.0, 0.0)"):
-            oranges = df.loc[(i),'orange Left']
-        else:
-            oranges = dfToAdd.loc[(i),'Orange 2']
+        oranges = dfToAdd.loc[(i),'Orange 2']
 
-        if (dfToAdd.loc[(i),'White 3'] == "(128.0, 128.0, 128.0)" or dfToAdd.loc[(i),'White 3'] == "(0.0, 0.0, 0.0)"):
-            whites = df.loc[(i),'white Left']
-        else:
-            whites = dfToAdd.loc[(i),'White 3']
+        whites = dfToAdd.loc[(i),'White 3']
 
-        if (dfToAdd.loc[(i),'Yellow 4'] == "(128.0, 128.0, 128.0)" or dfToAdd.loc[(i),'Yellow 4'] == "(0.0, 0.0, 0.0)"):
-            yellows = df.loc[(i),'yellow Left']
-        else:
-            yellows = dfToAdd.loc[(i),'Yellow 4']
+        yellows = dfToAdd.loc[(i),'Yellow 4']
 
-        if (dfToAdd.loc[(i),'Green 5'] == "(128.0, 128.0, 128.0)" or dfToAdd.loc[(i),'Green 5'] == "(0.0, 0.0, 0.0)"):
-            greens = df.loc[(i),'green Left']
-        else:
-            greens = dfToAdd.loc[(i),'Green 5']
+        greens = dfToAdd.loc[(i),'Green 5']
 
-        if (dfToAdd.loc[(i),'Blue 6'] == "(128.0, 128.0, 128.0)" or dfToAdd.loc[(i),'Blue 6'] == "(0.0, 0.0, 0.0)"):
-            blues = df.loc[(i),'blue Left']
-        else:
-            blues = dfToAdd.loc[(i),'Blue 6']
+        blues = dfToAdd.loc[(i),'Blue 6']
 
         songSequence = songSequence.append({
                     'red Left':toTupleCheck(reds),
@@ -83,17 +64,11 @@ def compile():
                     'blue Right':toTupleCheck(blues)}, ignore_index=True)
         print(str(i) + "/" + str(len(dfToAdd)) + " " + str(reds) + " " + str(oranges) + " " + str(whites) + " " + str(yellows) + " " + str(greens) + " " + str(blues))
         i+=2
-        # SHORTEN
-        # if (i%100 == 0):
-        #     i+=1
-        # # SHORTEN MORE
-        # elif (i%150 == 1):
-        #     i+=1
         
 
 def finish(songNum):
     global color, songSequence
-    songSequence.to_excel(path + "/flagCode/song" + str(songNum) + ".xlsx")
+    songSequence.to_excel("songTemp123.xlsx")
 
 
 def toTuple(before):

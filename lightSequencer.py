@@ -8,7 +8,9 @@ import signal
 import threading
 import pygame_widgets
 import sys
-sys.path.append('/home/pi/Desktop/globals/')
+#sys.path.append('/home/pi/Desktop/globals/')
+sys.path.append('/Users/s1034274/Desktop/globals/')
+
 from constants import path
 #from compiler import compile, finish
 
