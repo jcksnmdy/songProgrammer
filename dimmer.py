@@ -8,40 +8,46 @@ import sys
 sys.path.append('/Users/s1034274/Desktop/globals/')
 from constants import path
 
-num = int(input("Song number: "))
+
+num = int(input("Song: "))
+numStart = int(input("Start: "))
+numEnd = int(input("End: "))
+dimBy = float(input("Dim Num: "))
+
 
 color = (255, 255, 255)
-dfToAdd = pd.read_excel("/Users/s1034274/Desktop/songs/song" + str(num) + ".xlsx")
+dfToAdd = pd.read_excel("/Users/s1034274/Desktop/flagCode/song" + str(num) + ".xlsx")
 
 songSequence = pd.DataFrame()
+i = 0
 
 def toTupleCheck(before):
+    global i, dimBy
     before = str(before)
     firstNum = round(float(before[before.find("(")+1:before.find(",")]), 0)
     secNum = round(float(before[before.find(",")+2:before.find(",", 9)]), 0)
     thirdNum = round(float(before[before.find(",", 9)+2:before.find(")")]), 0)
-    if (firstNum < 50.0 and secNum < 50.0 and thirdNum < 50.0):
-        returning = (0.0, 0.0, 0.0)
+    if (i >= numStart and i <= numEnd):
+        returning = (firstNum/dimBy, secNum/dimBy, thirdNum/dimBy)
     else:
         returning = (firstNum, secNum, thirdNum)
     return returning
 
 def compile():
-    global color, songSequence, df, num
-    i = 5
+    global color, songSequence, df, num, numStart, numEnd, i
     while (i < len(dfToAdd)):
 
-        reds = dfToAdd.loc[(i),'Red 1']
+        reds = dfToAdd.loc[(i),'red Left']
 
-        oranges = dfToAdd.loc[(i),'Orange 2']
+        oranges = dfToAdd.loc[(i),'orange Left']
 
-        whites = dfToAdd.loc[(i),'White 3']
+        whites = dfToAdd.loc[(i),'white Left']
 
-        yellows = dfToAdd.loc[(i),'Yellow 4']
+        yellows = dfToAdd.loc[(i),'yellow Left']
 
-        greens = dfToAdd.loc[(i),'Green 5']
+        greens = dfToAdd.loc[(i),'green Left']
 
-        blues = dfToAdd.loc[(i),'Blue 6']
+        blues = dfToAdd.loc[(i),'blue Left']
 
         songSequence = songSequence.append({
                     'red Left':toTupleCheck(reds),
@@ -63,22 +69,14 @@ def compile():
                     'blue Middle':toTupleCheck(blues),
                     'blue Right':toTupleCheck(blues)}, ignore_index=True)
         print(str(i) + "/" + str(len(dfToAdd)) + " " + str(reds) + " " + str(oranges) + " " + str(whites) + " " + str(yellows) + " " + str(greens) + " " + str(blues))
-        i+=2
+        i+=1
         
 
 def finish(songNum):
     global color, songSequence
-    songSequence.to_excel("songTemp123.xlsx")
+    songSequence.to_excel("/Users/s1034274/Desktop/flagCode/song" + str(num) + ".xlsx")
 
 
-def toTuple(before):
-    print(before)
-    firstNum = int(before[before.find("'")+2:before.find(",")])
-    secNum = int(before[before.find(",")+2:before.find(",", 9)])
-    thirdNum = int(before[before.find(",", 9)+2:before.find("'", 9)])
-    returning = (firstNum, secNum, thirdNum)
-    print(returning)
-    return returning
 
 compile()
 finish(num)

@@ -12,7 +12,7 @@ num = int(input("Song number: "))
 
 color = (255, 255, 255)
 df = pd.read_excel(path + "/songProgrammer/songTemp.xlsx")
-dfToAdd = pd.read_excel("songs/song" + str(num) + ".xlsx")
+dfToAdd = pd.read_excel("/Users/s1034274/Desktop/songs/song" + str(num) + ".xlsx")
 
 songSequence = pd.DataFrame()
 
