@@ -58,15 +58,15 @@ playlist8Text = font.render('Beggin', True, [0,0,0])
 playlist9Text = font.render('Yeah!', True, [0,0,0])
 playlist10Text = font.render('Uptown', True, [0,0,0])
 playlist11Text = font.render('AOK', True, [0,0,0])
-playlist12Text = font.render('Sing.Lad', True, [0,0,0])
+playlist12Text = font.render('Sing.Lad', True, [0,0,0]) #Sing.Lad or Mon.Mash
 playlist13Text = font.render('Thriller', True, [0,0,0])
-playlist14Text = font.render('Edemame', True, [0,0,0])
+playlist14Text = font.render('Edemame', True, [0,0,0]) #Edemame or Halloween
 playlist15Text = font.render('Squid', True, [0,0,0])
 playlist16Text = font.render('immabe', True, [0,0,0])
-playlist17Text = font.render('DeckT', True, [0,0,0])
-playlist18Text = font.render('JinRoc', True, [0,0,0])
-playlist19Text = font.render('Mili', True, [0,0,0])
-playlist20Text = font.render('12days', True, [0,0,0])
+playlist17Text = font.render('Sheesh!', True, [0,0,0]) #DeckT or Sheesh!
+playlist18Text = font.render('ChittyBang', True, [0,0,0]) #JinRoc or ChittyBang
+playlist19Text = font.render('ENEMY', True, [0,0,0]) #Mele.k ENEMY
+playlist20Text = font.render('Motto', True, [0,0,0]) #12days or Motto
 
 
 redButton = pygame.Rect(137, 330, 7, 39)
@@ -386,23 +386,23 @@ def pickPlay():
                 if playlist17.collidepoint(mouse_pos):
                     # prints the location of mouse
                     print('button was pressed at {0}'.format(mouse_pos))
-                    load(17)
+                    play(17)
 
                 
                 if playlist18.collidepoint(mouse_pos):
                     # prints the location of mouse
                     print('button was pressed at {0}'.format(mouse_pos))
-                    load(18)
+                    play(18)
 
                 if playlist19.collidepoint(mouse_pos):
                     # prints the location of mouse
                     print('button was pressed at {0}'.format(mouse_pos))
-                    load(19)
+                    play(19)
                     
                 if playlist20.collidepoint(mouse_pos):
                     # prints the location of mouse
                     print('button was pressed at {0}'.format(mouse_pos))
-                    load(20)
+                    play(20)
 
         pygame.draw.rect(screen, [255,255,255], playlist1)  # draw button
         pygame.draw.rect(screen, [255,255,255], playlist2)  # draw button
@@ -452,6 +452,7 @@ def pickPlay():
         clock.tick(60)
 
 def load(songPlay):
+    global redButtonColor, orangeButtonColor, whiteButtonColor, yellowButtonColor, greenButtonColor, blueButton
     pygame.init()
     pygame.font.init()
     font = pygame.font.Font('freesansbold.ttf', 28)
@@ -575,10 +576,9 @@ def load(songPlay):
             greenButtonColor = (0.0, 0.0, 255.0)
             blueButtonColor = (0.0, 0.0, 255.0)
 
-#special
-        special1 = (255.0, 128.0, 0.0)
-        special2 = (255.0, 0.0, 255.0)
-        special3 = (255.0, 255.0, 255.0)
+        special1 = (255.0, 0.0, 0.0)
+        special2 = (130.0, 255.0, 0.0)
+        special3 = (255.0, 255.0, 0.0)
         if keys[pygame.K_z]:
             redButtonColor = special1
             orangeButtonColor = special2
@@ -601,26 +601,26 @@ def load(songPlay):
             greenButtonColor = special3
             blueButtonColor = special1
         if keys[pygame.K_v]:
-            redButtonColor = (255.0, 255.0, 0.0)
-            orangeButtonColor = (255.0, 255.0, 0.0)
-            whiteButtonColor = (255.0, 255.0, 0.0)
-            yellowButtonColor = (255.0, 255.0, 0.0)
-            greenButtonColor = (255.0, 255.0, 0.0)
-            blueButtonColor = (255.0, 255.0, 0.0)
+            redButtonColor = special1
+            orangeButtonColor = special2
+            whiteButtonColor = special2
+            yellowButtonColor = special1
+            greenButtonColor = special1
+            blueButtonColor = special2
         if keys[pygame.K_b]:
-            redButtonColor = (0.0, 255.0, 0.0)
-            orangeButtonColor = (0.0, 255.0, 0.0)
-            whiteButtonColor = (0.0, 255.0, 0.0)
-            yellowButtonColor = (0.0, 255.0, 0.0)
-            greenButtonColor = (0.0, 255.0, 0.0)
-            blueButtonColor = (0.0, 255.0, 0.0)
+            redButtonColor = special2
+            orangeButtonColor = special1
+            whiteButtonColor = special1
+            yellowButtonColor = special2
+            greenButtonColor = special2
+            blueButtonColor = special1
         if keys[pygame.K_n]:
-            redButtonColor = (0.0, 0.0, 255.0)
-            orangeButtonColor = (0.0, 0.0, 255.0)
-            whiteButtonColor = (0.0, 0.0, 255.0)
-            yellowButtonColor = (0.0, 0.0, 255.0)
-            greenButtonColor = (0.0, 0.0, 255.0)
-            blueButtonColor = (0.0, 0.0, 255.0)
+            redButtonColor = special3
+            orangeButtonColor = special3
+            whiteButtonColor = special3
+            yellowButtonColor = special3
+            greenButtonColor = special3
+            blueButtonColor = special3
 
         pygame.draw.rect(screen, redButtonColor, redButton)  # draw button
         pygame.draw.rect(screen, orangeButtonColor, orangeButton)  # draw button
@@ -683,6 +683,7 @@ def play(songNum):
     time.sleep(5)
     pygame.mixer.music.load("/Users/s1034274/Desktop/songs/song" + str(songNum) + ".mp3")
     pygame.mixer.music.play(0)
+    print("starting")
     while (i < len(allInfo)):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -727,7 +728,7 @@ def play(songNum):
         clock.tick(60)
         i+=1
         time.sleep(0.06362)
-
+    print("done")
     pygame.mixer.music.stop()
     pygame.quit()
     main()
