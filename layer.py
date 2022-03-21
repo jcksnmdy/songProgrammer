@@ -49,7 +49,7 @@ pygame.font.init()
 font = pygame.font.Font('freesansbold.ttf', 28)
 playlist1Text = font.render('Sirius', True, [0,0,0])
 playlist2Text = font.render('Thunder', True, [0,0,0])
-playlist3Text = font.render('Eye', True, [0,0,0])
+playlist3Text = font.render('PartyRok', True, [0,0,0])
 playlist4Text = font.render('Hit me', True, [0,0,0])
 playlist5Text = font.render('Enter S', True, [0,0,0])
 playlist6Text = font.render('Beat It', True, [0,0,0])
@@ -59,9 +59,9 @@ playlist9Text = font.render('Yeah!', True, [0,0,0])
 playlist10Text = font.render('Uptown', True, [0,0,0])
 playlist11Text = font.render('AOK', True, [0,0,0])
 playlist12Text = font.render('Sing.Lad', True, [0,0,0]) #Sing.Lad or Mon.Mash
-playlist13Text = font.render('Thriller', True, [0,0,0])
+playlist13Text = font.render('I.L.Rock', True, [0,0,0]) # Thriller or I.L.Rock
 playlist14Text = font.render('Edemame', True, [0,0,0]) #Edemame or Halloween
-playlist15Text = font.render('Squid', True, [0,0,0])
+playlist15Text = font.render('Up.Funk', True, [0,0,0])
 playlist16Text = font.render('immabe', True, [0,0,0])
 playlist17Text = font.render('Sheesh!', True, [0,0,0]) #DeckT or Sheesh!
 playlist18Text = font.render('ChittyBang', True, [0,0,0]) #JinRoc or ChittyBang
@@ -577,8 +577,8 @@ def load(songPlay):
             blueButtonColor = (0.0, 0.0, 255.0)
 
         special1 = (255.0, 0.0, 0.0)
-        special2 = (130.0, 255.0, 0.0)
-        special3 = (255.0, 255.0, 0.0)
+        special2 = (250.0, 0.0, 255.0)
+        special3 = (0.0, 0.0, 255.0)
         if keys[pygame.K_z]:
             redButtonColor = special1
             orangeButtonColor = special2
